@@ -1,15 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import MainCarrousel from './customer/components/homeCarrousel/MainCarrousel'
+import Navbar from './customer/components/navigation/Navbar'
+import Home from './customer/pages/Home'
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
+ <div className=''>
+  <Navbar />
   <div>
-    Last Project
+    <Home />
+    <h1>Hola</h1>
+      
+        
   </div>
+ </div>
       
   )
 }
