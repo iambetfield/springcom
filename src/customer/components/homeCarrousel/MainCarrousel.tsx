@@ -10,7 +10,8 @@ const items = homeCarouselData.map((item)=>
 )
 
 const MainCarousel = () => (
-    <AliceCarousel
+    <div className='z-0'>
+ <AliceCarousel
         mouseTracking
         items={items}
         disableButtonsControls
@@ -19,6 +20,8 @@ const MainCarousel = () => (
         controlsStrategy="alternate"
         infinite
     />
+    </div>
+   
 );
 
 export default MainCarousel;

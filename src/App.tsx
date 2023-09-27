@@ -1,5 +1,9 @@
-import MainCarrousel from './customer/components/homeCarrousel/MainCarrousel'
+import Cart from './customer/components/cart/Cart'
+import Checkout from './customer/components/checkout/Checkout'
+import Footer from './customer/components/footer/Footer'
 import Navbar from './customer/components/navigation/Navbar'
+import Product from './customer/components/product/Product'
+import ProductDetails from './customer/components/productDetails/ProductDetails'
 import Home from './customer/pages/Home'
 
 function App() {
@@ -10,9 +14,13 @@ function App() {
   <Navbar />
   <div>
     <Home />
-    <h1>Hola</h1>
-      
-        
+    <Product />
+    <ProductDetails />
+    <Cart />
+    <Checkout />
+  </div>
+  <div>
+    <Footer />
   </div>
  </div>
       

@@ -147,7 +147,7 @@ function classNames(...classes:any) {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white">
+    <div className="bg-white z-50 relative">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -207,7 +207,7 @@ function classNames(...classes:any) {
                   </div>
                   <Tab.Panels as={Fragment}>
                     {navigation.categories.map((category) => (
-                      <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10">
+                      <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10 z-50">
                         <div className="grid grid-cols-2 gap-x-4">
                           {category.featured.map((item) => (
                             <div key={item.name} className="group relative text-sm">
