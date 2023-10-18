@@ -7,8 +7,8 @@ const Adresscard = () => {
             <p className='font-semibold'>Norberto Alvarez</p>
             <p>Tomás de la Torre 17, 2132</p>
             <div className='space-y-1'>
-                <p className='font-semibol'>Phone Number</p>
-                <p>3413124012</p>
+                <p className='opacity-60 text-sm'>Phone Number</p>
+                <p >3413124012</p>
             </div>
         </div>
     </div>

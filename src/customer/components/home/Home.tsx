@@ -1,8 +1,7 @@
-
-import Carrousel from '../components/homeSectionCarrousel/HomeSectionCarrousel'
-import MainCarousel from '../components/homeCarrousel/MainCarrousel'
-import { gouns } from '../Data/gouns'
-import { mens_kurta } from '../Data/men_kurta'
+import Carrousel from '../../components/homeSectionCarrousel/HomeSectionCarrousel'
+import MainCarousel from '../../components/homeCarrousel/MainCarrousel'
+import { gouns } from '../../Data/gouns'
+import { mens_kurta } from '../../Data/men_kurta'
 
 const Home = () => {
   return (
