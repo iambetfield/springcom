@@ -1,11 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import {
-  Dialog,
-  Disclosure,
-  Menu,
-
-  Transition,
-} from "@headlessui/react";
+import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
@@ -16,13 +10,12 @@ import {
 } from "@heroicons/react/20/solid";
 import ProductCard from "./ProductCard";
 import { filters, singleFilter } from "./FilterData";
-import {
-  Pagination,
-} from "@mui/material";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch } from "../../../State/Auth/hooks";
@@ -41,15 +34,19 @@ function classNames(...classes: any) {
 }
 
 export default function Product() {
+
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const location = useLocation();
+  
   const navigate = useNavigate();
-  const param = useParams();
+  const param = useParams();  //se captura sólamente al cargar el componente y no se actualiza según cambios URL
   const dispatch = useAppDispatch();
   const { product } = useSelector((store: any) => store);
 
+  const location = useLocation(); //si se actualiza al cambiar la URL en la paginación
   const decodedQueryString = decodeURIComponent(location.search);
   const searchParams = new URLSearchParams(decodedQueryString);
+  
   const colorValue = searchParams.get("color");
   const sizeValue = searchParams.get("size");
   const priceValue = searchParams.get("price");
@@ -57,14 +54,20 @@ export default function Product() {
   const sortValue = searchParams.get("sort");
   const pageNumber = searchParams.get("page") || 1;
   const stockValue = searchParams.get("stock");
+ 
 
-  const handlePaginationChange = (event: any, value: any) => {
+
+  const handlePaginationChange = (e: any, value:number) => {
+
     const searchParams = new URLSearchParams(location.search);
-
-    searchParams.set("page", value);
+    searchParams.set("page", value.toString());
     const query = searchParams.toString();
+    console.log(query);
+    console.log(product.products?.content)
     navigate({ search: `?${query}` });
   };
+
+  
 
   const handleFilter = (value: any, sectionId: any) => {
     const searchParams = new URLSearchParams(location.search);
@@ -101,7 +104,8 @@ export default function Product() {
     const [minPrice, maxPrice] =
       priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
 
-    const pageNumberValue = parseInt(param.pageNumber || "1", 10);
+    const pageNumberValue = parseInt(searchParams.get("page") || "1", 10);
+    console.log("número de pagina: ", pageNumberValue);
 
     const data = {
       category: param.labelThree || "",
@@ -421,20 +425,21 @@ export default function Product() {
                               <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
                                 defaultValue=""
-                                name="radio-buttons-group">
+                                name="radio-buttons-group"
+                              >
                                 {section.options.map((option) => (
-                                    <FormControlLabel
+                                  <FormControlLabel
                                     key={option.value}
-                                      onChange={(e) =>
-                                        handleRadioFilterChange(e, section.id)}
-                                      
-                                      value={option.value}
-                                      control={<Radio />}
-                                      label={option.label}
-                                    />
+                                    onChange={(e) =>
+                                      handleRadioFilterChange(e, section.id)
+                                    }
+                                    value={option.value}
+                                    control={<Radio />}
+                                    label={option.label}
+                                  />
                                 ))}
                               </RadioGroup>
-                            </FormControl> 
+                            </FormControl>
                           </div>
                         </Disclosure.Panel>
                       </>
@@ -457,11 +462,14 @@ export default function Product() {
 
           <section className="w-full px=[3.5rem]">
             <div className="px-4 py-5 justify-center flex ">
-              <Pagination
-                count={product.products?.totalPages}
-                color="secondary"
-                onChange={handlePaginationChange}
-              />
+              <Stack spacing={2}>
+                <Pagination
+                  count={product.products?.totalPages}
+                  color="secondary"
+                  onChange={handlePaginationChange}
+                      
+                />
+              </Stack>
             </div>
           </section>
         </main>

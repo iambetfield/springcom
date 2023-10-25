@@ -12,7 +12,7 @@ const ProductCard = ({product}:ProductCardProps) => {
 
     
   return (
-    <div onClick={()=>navigate(`/product/${3}`)} className='productCard w-[15rem] m-3 transition-all cursor-pointer rounded'>
+    <div onClick={()=>navigate(`/product/${product.id}`)} className='productCard w-[15rem] m-3 transition-all cursor-pointer rounded'>
         <div className="h-[13rem] w-[10rem] mx-auto" >
             <img className="h-full w-full object-cover object-left-top " alt="" src={product.imageUrl}/>
         </div>

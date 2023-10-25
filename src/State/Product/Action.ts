@@ -10,7 +10,9 @@ export const findProducts = (reqData: any) => async (dispatch: any) => {
        &maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}
        &pageNumber=${pageNumber}&pageSize=${pageSize}`)
        
-       console.log("product data ", data);
+       console.log("product data :", data);
+       console.log("número de página que paso por parámetro: " , pageNumber)
+       console.log("color: " , colors)
 
        dispatch({type:FIND_PRODUCTS_SUCCESS, payload:data})
     } catch (error:any) {
