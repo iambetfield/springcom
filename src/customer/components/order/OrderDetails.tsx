@@ -15,7 +15,7 @@ const OrderDetails = () => {
         <OrderTracker activeStep={3} />
       </div>
       <Grid container className="space-y-4">
-        {[1, 1, 1, 1].map((item) => (
+        {[1, 1, 1, 1].map(() => (
           <Grid
             item
             container

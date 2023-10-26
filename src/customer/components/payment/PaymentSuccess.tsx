@@ -12,8 +12,9 @@ import Adresscard from "../adresscard/Adresscard";
 const PaymentSuccess = () => {
     const [paymentId, setPaymentId] = useState<string | null>(null);
     const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
+    console.log(paymentStatus);
 
-    const [referenceId, setReferenceId] = useState();
+    //const [referenceId, setReferenceId] = useState();
     const {orderId} = useParams();
 
     console.log("orderId", orderId);

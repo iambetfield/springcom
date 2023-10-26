@@ -1,5 +1,4 @@
 import { Avatar, Box, Grid, Rating } from '@mui/material'
-import React from 'react'
 
 const ProductReviewCard = () => {
   return (

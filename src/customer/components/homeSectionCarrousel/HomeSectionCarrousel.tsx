@@ -4,7 +4,7 @@ import HomeSectionCard from "../homeSectionCard/HomeSectionCard";
 import { Button } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useState } from "react";
-import { mens_kurta } from "../../Data/men_kurta";
+
 
 interface CarrouselProps {
   data: any;

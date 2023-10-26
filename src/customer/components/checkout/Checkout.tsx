@@ -17,6 +17,7 @@ export default function Checkout() {
   const querySearch= new URLSearchParams(location.search);
 
   const step = querySearch.get("step");
+  const stepNumber = parseInt(step || "0", 10);
 
 
 
@@ -79,7 +80,7 @@ export default function Checkout() {
           </Box>
 
           <div>
-            {step == 2 ? <DeliveryAddressForm /> : <OrderSummary />}
+            {stepNumber == 2 ? <DeliveryAddressForm /> : <OrderSummary />}
           </div>
         </React.Fragment>
       )}

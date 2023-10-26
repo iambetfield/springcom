@@ -2,7 +2,7 @@ import Carrousel from '../../components/homeSectionCarrousel/HomeSectionCarrouse
 import MainCarousel from '../../components/homeCarrousel/MainCarrousel'
 import { gouns } from '../../Data/gouns'
 import { mens_kurta } from '../../Data/men_kurta'
-import { dressPage1 } from '../../Data/dress'
+
 import { useAppDispatch } from '../../../State/Auth/hooks'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -21,7 +21,7 @@ useEffect(()=>{
   
 },[])
 
-const topProducts = product.products?.filter((p:any) => p.category.name === 'top');
+//const topProducts = product.products?.filter((p:any) => p.category.name === 'top');
 
 //console.log("tops: ", topProducts);
 

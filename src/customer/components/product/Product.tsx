@@ -58,7 +58,7 @@ export default function Product() {
  
   console.log("Nombre de Productos", {labelThree} )
 
-  const handlePaginationChange = (e: any, value:number) => {
+  const handlePaginationChange = (value:number) => {
 
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("page", value.toString());

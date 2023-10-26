@@ -1,6 +1,6 @@
 
 interface Props {
-  address: any
+  address?: any
 }
 
 const Adresscard = ({address}:Props) => {

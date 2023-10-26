@@ -79,7 +79,7 @@ export default function ProductDetails() {
 
 
   const handleAddtoCart=()=>{
-    const data ={productId:params.productId,size:selectedSize.name}
+    const data ={productId:params.productId,size:{name:selectedSize}}
     dispatch(addItemToCart(data))
     console.log("4. Data pasada para el cart: " ,data)
     navigate("/cart");
@@ -374,7 +374,7 @@ export default function ProductDetails() {
             <Grid container spacing={7}>
               <Grid item xs={7}>
                 <div className="space-y-5">
-                  {[1, 1, 1].map((item) => (
+                  {[1, 1, 1].map(() => (
                     <ProductReviewCard />
                   ))}
                 </div>

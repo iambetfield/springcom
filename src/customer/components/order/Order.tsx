@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material'
-import React from 'react'
 import OrderCard from './OrderCard'
 
 const orderStatus = [
@@ -31,7 +30,7 @@ const Order = () => {
             </Grid>
             <Grid item xs={9}>
                 <div className='space-y-3'>
-                {[1,1,1,1,1].map((item)=>(
+                {[1,1,1,1,1].map(()=>(
                 <OrderCard />
                ))}
 

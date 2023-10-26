@@ -6,7 +6,7 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 import AuthModal from "../../auth/AuthModal";
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 
