@@ -104,6 +104,7 @@ const navigation = {
           id: "clothing",
           name: "Clothing",
           items: [
+            { name: "SHIRTS", href: "#" },
             { name: "Tops", href: "#" },
             { name: "Pants", href: "#" },
             { name: "Sweaters", href: "#" },
@@ -149,6 +150,7 @@ function classNames(...classes: any) {
 }
 
 function Navbar() {
+  
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -182,11 +184,14 @@ function Navbar() {
     category: any,
     section: any,
     item: any,
-    close: any
+    closeMenu: any
+    
   ) => {
     navigate(`${category.id}/${section.id}/${item.name}`);
-    close();
+   
+    closeMenu();
   };
+
 
   useEffect(() => {
     if (jwt) {
@@ -375,16 +380,16 @@ function Navbar() {
       </Transition.Root>
 
       <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over $100
-        </p>
+        <p className="flex h-1 items-center justify-center bg-indigo-600 px-1 text-sm font-medium text-white sm:px-6 lg:px-8"></p>
 
         <nav
           aria-label="Top"
           className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+        
         >
           <div className="border-b border-gray-200">
             <div className="flex h-16 items-center">
+             {/* Burger boton */}
               <button
                 type="button"
                 className="relative rounded-md bg-white p-2 text-gray-400 lg:hidden"
@@ -397,8 +402,7 @@ function Navbar() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="#">
-                  <span className="sr-only">Your Company</span>
+                <a href="/">
                   <img
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -407,16 +411,18 @@ function Navbar() {
                 </a>
               </div>
 
-              {/* Flyout menus */}
-              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
+              {/* Flyout menu */}
+              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch" >
                 <div className="flex h-full space-x-8">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
-                      {({ open }: any) => (
+                      {/* paso 2 parámetros posibles, open y close */}
+                      {({ open, close }: any) => (
                         <>
                           <div className="relative flex">
                             <Popover.Button
                               className={classNames(
+                                // si esta abierto, muestra, y cuando hago click, cambio a close
                                 open
                                   ? "border-indigo-600 text-indigo-600"
                                   : "border-transparent text-gray-700 hover:text-gray-800",
@@ -436,7 +442,8 @@ function Navbar() {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
+                            <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500"
+                            >
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                               <div
                                 className="absolute inset-0 top-1/2 bg-white shadow"
@@ -503,6 +510,7 @@ function Navbar() {
                                                       category,
                                                       section,
                                                       item,
+                                                      // acá tenemos que mandar a cerrar el menu
                                                       close
                                                     )
                                                   }
