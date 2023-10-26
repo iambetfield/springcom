@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../../State/Auth/hooks'
 import { getOrderById } from '../../../State/Order/Action'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { createPayment } from '../../../State/Payment/Action'
 
 const OrderSummary = () => {
 const dispatch = useAppDispatch();
@@ -20,6 +21,10 @@ useEffect(()=>{
   console.log("la orden id es: ", orderId)
   console.log("10. la direccion es: " , order.order?.shippingAddress)
 },[orderId])
+
+const handleCheckout=()=>{
+  dispatch(createPayment(orderId))
+}
 
 //console.log("9. la ORDEN ES: ", order)
   return (
@@ -66,6 +71,7 @@ useEffect(()=>{
               variant="contained"
               sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd" }}
               className="w-full mt-5"
+              onClick={handleCheckout}
             >
               CHECKOUT
             </Button>

@@ -8,6 +8,7 @@ import OrderDetails from "./customer/components/order/OrderDetails";
 import Product from "./customer/components/product/Product";
 import ProductDetails from "./customer/components/productDetails/ProductDetails";
 import Home from "./customer/components/home/Home";
+import PaymentSuccess from "./customer/components/payment/PaymentSuccess";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />}></Route>
         <Route path="/account/order" element={<Order />}></Route>
         <Route path="/account/order/:orderId" element={<OrderDetails />}></Route>
+        <Route path="/payment/:orderId" element={<PaymentSuccess />}></Route>
         
       </Routes>
       <Footer />
