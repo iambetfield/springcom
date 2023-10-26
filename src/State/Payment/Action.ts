@@ -13,7 +13,7 @@ export const createPayment= (orderId:any)=> async (dispatch:any)=>{
         }
 
 
-    } catch (error) {
+    } catch (error:any) {
         dispatch({type: CREATE_ORDER_FAILURE, payload:error.message})
     }
 }
@@ -30,7 +30,7 @@ export const updatePayment= (reqData:any)=> async (dispatch:any)=>{
         }
 
 
-    } catch (error) {
+    } catch (error:any) {
         dispatch({type: CREATE_ORDER_FAILURE, payload:error.message})
     }
 }

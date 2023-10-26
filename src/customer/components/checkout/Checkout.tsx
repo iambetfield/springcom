@@ -23,13 +23,13 @@ export default function Checkout() {
 
 
 
-  const handleNext = () => {
+/*   const handleNext = () => {
    
  
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
  
-  };
+  }; */
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -42,8 +42,8 @@ export default function Checkout() {
   return (
     <div className='px-10 lg:px-20 py-10'>
  <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={step}>
-        {steps.map((label, index) => {
+      <Stepper activeStep={activeStep}>
+        {steps.map((label) => {
           const stepProps: { completed?: boolean } = {};
           const labelProps: {
             optional?: React.ReactNode;

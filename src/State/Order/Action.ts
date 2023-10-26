@@ -1,5 +1,5 @@
 
-import { API_BASE_URL, api } from "../../config/apiConfig";
+import { api } from "../../config/apiConfig";
 import { CREATE_ORDER_FAILURE, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, GET_ORDER_BY_ID_FAILURE, GET_ORDER_BY_ID_REQUEST, GET_ORDER_BY_ID_SUCCESS } from "./ActionType";
 
 export const createOrder = (reqData:any) => async (dispatch:any) => {

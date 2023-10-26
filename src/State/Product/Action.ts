@@ -48,7 +48,7 @@ export const findProductsByCategory = (reqData: string) => async(dispatch:any)=>
         const response = await api.get(`/api/products/${reqData}`);
         const data = response.data;
         dispatch({type:FIND_PRODUCT_BY_CATEGORY_SUCCESS, payload: data})
-    } catch (error) {
+    } catch (error:any) {
         dispatch({type:FIND_PRODUCT_BY_CATEGORY_FAILURE, payload: error.message})
         
     }

@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../../config/apiConfig";
 import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType";
 
 
-const token = localStorage.getItem("jwt");
+
 
 const registerRequest=()=>({type:REGISTER_REQUEST});
 const registerSuccess=(user:any)=>({type:REGISTER_SUCCESS, payload:user});
