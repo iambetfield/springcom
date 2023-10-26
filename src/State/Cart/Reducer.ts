@@ -28,11 +28,14 @@ export const cartReducer = (state=initialState, action:any)=>{
         case REMOVE_CART_ITEM_REQUEST:
         case UPDATE_CART_ITEM_REQUEST:
             return{...state, loading:true};
+
         case REMOVE_CART_ITEM_SUCCESS:
-            return {...state, carItems:state.cartItems.filter((item:any)=>item.id !== action.payload), loading: false};
+            return {...state, deleteCartItem: action.payload, loading: false};
         case UPDATE_CART_ITEM_SUCCESS:
-            return{...state, cartItems:state.cartItems.map((item:any)=> item.id === action.payload.id ? action.payload : item), loading:false
+            return{...state, updateCartItem: action.payload, loading:false
             };
+
+
         case REMOVE_CART_ITEM_FAILURE:
         case UPDATE_CART_ITEM_FAILURE:
             return {...state, error: action.payload, loading: false};

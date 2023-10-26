@@ -10,9 +10,9 @@ export const findProducts = (reqData: any) => async (dispatch: any) => {
        &maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}
        &pageNumber=${pageNumber}&pageSize=${pageSize}`)
        
-       console.log("product data :", data);
-       console.log("número de página que paso por parámetro: " , pageNumber)
-       console.log("color: " , colors)
+       //console.log("product data :", data);
+       //console.log("número de página que paso por parámetro: " , pageNumber)
+       //console.log("color: " , colors)
 
        dispatch({type:FIND_PRODUCTS_SUCCESS, payload:data})
     } catch (error:any) {
@@ -25,9 +25,13 @@ export const findProductsById = (reqData: any) => async (dispatch: any) => {
     dispatch({type: FIND_PRODUCT_BY_ID_REQUEST})
 
     const { productId} = reqData;
+ 
+
+    console.log("1. productId antes de mandar: ", productId);
     try {
        const {data} = await api.get(`/api/products/id/${productId}`)
-
+        console.log("2. data que traigo: ", data);
+        console.log("2.1 URL de la imagen: ", data.imageUrl)
        dispatch({type:FIND_PRODUCT_BY_ID_SUCCESS, payload:data})
     } catch (error:any) {
         dispatch({type:FIND_PRODUCT_BY_ID_FAILURE, payload:error.message})

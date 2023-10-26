@@ -1,8 +1,12 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
-import React from "react";
 import Adresscard from "../adresscard/Adresscard";
+import { useAppDispatch } from "../../../State/Auth/hooks";
+import { createOrder } from "../../../State/Order/Action";
+import { useNavigate } from "react-router-dom";
 
 const DeliveryAddressForm = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
     const handleSubmit =(e:any) => {
         e.preventDefault();
@@ -10,7 +14,7 @@ const DeliveryAddressForm = () => {
         const data = new FormData(e.currentTarget);
 
         const address =  {
-            firstNname: data.get("firstName"),
+            firstName: data.get("firstName"),
             lastName: data.get("lastName"),
             streetAddress: data.get("address"),
             city: data.get("city"),
@@ -19,6 +23,9 @@ const DeliveryAddressForm = () => {
             mobile: data.get("phoneNumber")
         }
 
+        const orderData = {address, navigate}
+
+        dispatch(createOrder(orderData));
         console.log("address", address);
     }
 
@@ -32,7 +39,7 @@ const DeliveryAddressForm = () => {
           className="border rounded-e-md shadow-md h-[30rem] overflow-y-scroll"
         >
           <div className="p-5 py-7 border-b cursor-pointer">
-            <Adresscard />
+            {/* <Adresscard /> */}
             <Button
               sx={{ mt: 2, bgcolor: "RGB(145 85 253)" }}
               size="large"
@@ -70,7 +77,7 @@ const DeliveryAddressForm = () => {
                   <TextField
                     required
                     id="address"
-                    name="adress"
+                    name="address"
                     label="Adress"
                     fullWidth
                     autoComplete="given-name"

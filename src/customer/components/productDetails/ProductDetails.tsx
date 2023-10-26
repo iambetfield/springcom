@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { Box, Button, Grid, LinearProgress, Rating } from "@mui/material";
 import ProductReviewCard from "./ProductReviewCard";
 
 import { mens_kurta } from "../../Data/men_kurta";
 import HomeSectionCard from "../homeSectionCard/HomeSectionCard";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const product = {
+import { findProductsById } from "../../../State/Product/Action";
+import { useAppDispatch } from "../../../State/Auth/hooks";
+import { useSelector } from "react-redux";
+import { addItemToCart } from "../../../State/Cart/Action";
+
+const producto = {
   name: "Basic Tee 6-Pack",
   price: "$192",
   href: "#",
@@ -55,20 +60,41 @@ const product = {
   details:
     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 };
-const reviews = { href: "#", average: 4, totalCount: 117 };
+
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function ProductDetails() {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
 
   const navigate = useNavigate();
+  const params = useParams();
+  const dispatch = useAppDispatch();
+  const {product} = useSelector((store:any)=>store);
+
+  console.log("Params: ----", params.productId);
+
 
   const handleAddtoCart=()=>{
+    const data ={productId:params.productId,size:selectedSize.name}
+    dispatch(addItemToCart(data))
+    console.log("4. Data pasada para el cart: " ,data)
     navigate("/cart");
+  }
+
+  useEffect(()=>{
+    const data = {productId:params.productId}
+    dispatch(findProductsById(data))
+   
+  },[params.productId])
+
+  
+  if(product){
+    console.log("3. Producto:" ,product);
+    console.log("3.1. Producto:" ,product.product?.imageUrl);
   }
 
   return (
@@ -79,7 +105,7 @@ export default function ProductDetails() {
             role="list"
             className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
           >
-            {product.breadcrumbs.map((breadcrumb) => (
+            {producto.breadcrumbs.map((breadcrumb) => (
               <li key={breadcrumb.id}>
                 <div className="flex items-center">
                   <a
@@ -103,11 +129,11 @@ export default function ProductDetails() {
             ))}
             <li className="text-sm">
               <a
-                href={product.href}
+                href={producto.href}
                 aria-current="page"
                 className="font-medium text-gray-500 hover:text-gray-600"
               >
-                {product.name}
+                {producto.name}
               </a>
             </li>
           </ol>
@@ -117,13 +143,13 @@ export default function ProductDetails() {
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
               <img
-                src={product.images[0].src}
-                alt={product.images[0].alt}
+                src={product.product?.imageUrl}
+                alt={producto.images[0].alt}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="flex flex-wrap spaxe-x-5 justify-center">
-              {product.images.map((item) => (
+              {producto.images.map((item) => (
                 <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4 mr-4">
                   <img
                     src={item.src}
@@ -139,10 +165,10 @@ export default function ProductDetails() {
           <div className="lg:col-span-1 max-h-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7xl lg:px-8 lg:pb-24">
             <div className="lg:col-span-2 ">
               <h1 className="text-lg lg:text-xl font-semibold text-gray-900">
-                {product.name}
+                {product.product?.brand}
               </h1>
               <h2 className="text-sm lg:text-sm text-gray-00 opacity-60 pt-1">
-                Universal Fit
+                {product.product?.title}
               </h2>
             </div>
 
@@ -150,9 +176,9 @@ export default function ProductDetails() {
             <div className="mt-4 lg:row-span-3 lg:mt-2">
               <h2 className="sr-only">Product information</h2>
               <div className="flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6">
-                <p className="font-semibold">$444</p>
-                <p className="opacity-50 line-through ">432</p>
-                <p className="text-green-600 font-semibold">40% OFF</p>
+                <p className="font-semibold">{product.product?.discountedPrice}</p>
+                <p className="opacity-50 line-through ">{product.product?.price}</p>
+                <p className="text-green-600 font-semibold">{product.product?.discountPercent} OFF</p>
               </div>
 
               {/* Reviews */}
@@ -180,7 +206,7 @@ export default function ProductDetails() {
                       Choose a color
                     </RadioGroup.Label>
                     <div className="flex items-center space-x-3">
-                      {product.colors.map((color) => (
+                      {producto.colors.map((color) => (
                         <RadioGroup.Option
                           key={color.name}
                           value={color}
@@ -230,7 +256,7 @@ export default function ProductDetails() {
                       Choose a size
                     </RadioGroup.Label>
                     <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                      {product.sizes.map((size) => (
+                      {producto.sizes.map((size) => (
                         <RadioGroup.Option
                           key={size.name}
                           value={size}
@@ -309,7 +335,7 @@ export default function ProductDetails() {
 
                 <div className="space-y-6">
                   <p className="text-base text-gray-900">
-                    {product.description}
+                    {producto.description}
                   </p>
                 </div>
               </div>
@@ -321,7 +347,7 @@ export default function ProductDetails() {
 
                 <div className="mt-4">
                   <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                    {product.highlights.map((highlight) => (
+                    {producto.highlights.map((highlight) => (
                       <li key={highlight} className="text-gray-400">
                         <span className="text-gray-600">{highlight}</span>
                       </li>
@@ -334,7 +360,7 @@ export default function ProductDetails() {
                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">
-                  <p className="text-sm text-gray-600">{product.details}</p>
+                  <p className="text-sm text-gray-600">{producto.details}</p>
                 </div>
               </div>
             </div>

@@ -1,14 +1,17 @@
-import React from 'react'
 
-const Adresscard = () => {
+interface Props {
+  address: any
+}
+
+const Adresscard = ({address}:Props) => {
   return (
     <div>
         <div className='space-y-3'>
-            <p className='font-semibold'>Norberto Alvarez</p>
-            <p>Tomás de la Torre 17, 2132</p>
+            <p className='font-semibold'>{address?.firstName + " " + address?.lastName}</p>
+            <p>{address?.streetAddress}</p>
             <div className='space-y-1'>
                 <p className='opacity-60 text-sm'>Phone Number</p>
-                <p >3413124012</p>
+                <p>{address?.mobile}</p>
             </div>
         </div>
     </div>

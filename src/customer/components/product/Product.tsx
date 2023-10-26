@@ -63,11 +63,11 @@ export default function Product() {
     searchParams.set("page", value.toString());
     const query = searchParams.toString();
     console.log(query);
-    console.log(product.products?.content)
+
     navigate({ search: `?${query}` });
   };
 
-  
+  console.log("0. muestra productos ", product.products?.content)
 
   const handleFilter = (value: any, sectionId: any) => {
     const searchParams = new URLSearchParams(location.search);

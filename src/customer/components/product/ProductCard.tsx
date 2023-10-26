@@ -23,8 +23,8 @@ const ProductCard = ({product}:ProductCardProps) => {
             </div>
             <div className="flex justify-center space-x-2">
                 <p className="font-semibold text-lg">${product.discountedPrice}</p>
-                <p className="line-through opacity-50 text-lg">{product.price}</p>
-                <p className="text-green-600 font-semibold text-lg">{product.discountPersent}% OFF</p>
+                <p className="line-through opacity-50 text-lg">${product.price}</p>
+                <p className="text-green-600 font-semibold text-lg">{product.discountPercent}% OFF</p>
 
             </div>
 
