@@ -43,7 +43,7 @@ const navigation = {
           name: "Clothing",
           items: [
             { name: "Tops", href: "#" },
-            { name: "Dresses", href: "#" },
+            { name: "Dress", href: "#" },
             { name: "Pants", href: "#" },
             { name: "Denim", href: "#" },
             { name: "Sweaters", href: "#" },
@@ -104,7 +104,7 @@ const navigation = {
           id: "clothing",
           name: "Clothing",
           items: [
-            { name: "SHIRTS", href: "#" },
+            { name: "mens_kurta", href: "#" },
             { name: "Tops", href: "#" },
             { name: "Pants", href: "#" },
             { name: "Sweaters", href: "#" },

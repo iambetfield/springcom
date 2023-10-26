@@ -1,5 +1,5 @@
 import { api } from "../../config/apiConfig";
-import { FIND_PRODUCTS_FAILURE, FIND_PRODUCTS_REQUEST, FIND_PRODUCTS_SUCCESS, FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS } from "./ActionType";
+import { FIND_PRODUCTS_FAILURE, FIND_PRODUCTS_REQUEST, FIND_PRODUCTS_SUCCESS, FIND_PRODUCT_BY_CATEGORY_FAILURE, FIND_PRODUCT_BY_CATEGORY_REQUEST, FIND_PRODUCT_BY_CATEGORY_SUCCESS, FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS } from "./ActionType";
 
 export const findProducts = (reqData: any) => async (dispatch: any) => {
     dispatch({type: FIND_PRODUCTS_REQUEST})
@@ -38,3 +38,19 @@ export const findProductsById = (reqData: any) => async (dispatch: any) => {
     }
 
 };
+
+
+export const findProductsByCategory = (reqData: string) => async(dispatch:any)=>{
+    dispatch({type: FIND_PRODUCT_BY_CATEGORY_REQUEST});
+    console.log("LA DATA QUE MANDAMOS ES:", reqData);
+
+    try {
+        const response = await api.get(`/api/products/${reqData}`);
+        const data = response.data;
+        dispatch({type:FIND_PRODUCT_BY_CATEGORY_SUCCESS, payload: data})
+    } catch (error) {
+        dispatch({type:FIND_PRODUCT_BY_CATEGORY_FAILURE, payload: error.message})
+        
+    }
+}
+

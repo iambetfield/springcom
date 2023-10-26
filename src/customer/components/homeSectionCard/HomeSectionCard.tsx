@@ -1,11 +1,21 @@
+import { useNavigate } from "react-router-dom";
+
 
 interface ProductProps{
   product: any;
 }
 
+
+
 const HomeSectionCard = ({product}:ProductProps) => {
+
+  const navigate = useNavigate();
+
+
   return (
-    <div className='cursor-pointer flex flex-col items-center bg-white rounded-lg shadow-lg overflow-hidden w-[15rem] mx-3 border'>
+    <div 
+    onClick={()=>navigate(`/product/${product.id}`)} 
+    className='cursor-pointer flex flex-col items-center bg-white rounded-lg shadow-lg overflow-hidden w-[15rem] mx-3 border'>
        <div className='h-[13rem] w-[10rem]'>
             <img className='object-cover object-top w-full h-full ' src={product.imageUrl}/>
        </div> 

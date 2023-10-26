@@ -54,8 +54,9 @@ export default function Product() {
   const sortValue = searchParams.get("sort");
   const pageNumber = searchParams.get("page") || 1;
   const stockValue = searchParams.get("stock");
+  const {labelThree} = useParams();
  
-
+  console.log("Nombre de Productos", {labelThree} )
 
   const handlePaginationChange = (e: any, value:number) => {
 
@@ -67,7 +68,7 @@ export default function Product() {
     navigate({ search: `?${query}` });
   };
 
-  console.log("0. muestra productos ", product.products?.content)
+  console.log("0. muestra productos ", product.products?.category)
 
   const handleFilter = (value: any, sectionId: any) => {
     const searchParams = new URLSearchParams(location.search);
@@ -116,7 +117,7 @@ export default function Product() {
       minDiscount: discountValue || 0,
       sort: sortValue || "price_low",
       pageNumber: pageNumberValue - 1,
-      pageSize: 2,
+      pageSize:9,
       stock: stockValue,
     };
     dispatch(findProducts(data));
@@ -249,7 +250,7 @@ export default function Product() {
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              New Arrivals
+             {labelThree}
             </h1>
 
             <div className="flex items-center">
